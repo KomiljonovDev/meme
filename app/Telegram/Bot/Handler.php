@@ -6,7 +6,7 @@ $bot->setWebHook('');
 
 $update = $bot->updates();
 
-if (isset($update)){
+if (isset($update?->message)){
     $message = $update->message;
     $text = $message->text;
     $chatId = $message->chat->id;
