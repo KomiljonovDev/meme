@@ -7,6 +7,7 @@ $bot = new BotHandler(['botToken'=>'7170488644:AAG3pMlvLYfvGoGpoL9P3taX5FEDI37MO
 $update = $bot->updates();
 
 if (isset($update?->message)){
+    echo "ok";
     $message = $update->message;
     $text = $message->text;
     $chatId = $message->chat->id;
