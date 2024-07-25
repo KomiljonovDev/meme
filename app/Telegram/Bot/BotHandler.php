@@ -9,4 +9,9 @@ class BotHandler extends Bot {
         $this->sendChatAction('typing', $chatId)
             ->sendMessage('Assalomu alaykum');
     }
+
+    public function startReferal (int $chatId) {
+        $this->sendChatAction('typing', $chatId)
+            ->sendMessage('Assalomu alaykum, referal');
+    }
 }
