@@ -2,6 +2,7 @@
 use App\Telegram\Bot\BotHandler;
 
 $bot = new BotHandler(['botToken'=>'1234']);
+$bot->setWebHook('');
 
 $update = $bot->updates();
 
