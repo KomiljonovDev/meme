@@ -100,7 +100,7 @@ class Bot {
             }
             return false;
         }
-        $this->request('setWebHook', compact('url', 'certificate'));
+        $this->result = $this->request('setWebHook', compact('url', 'certificate'));
         return $this;
     }
 
