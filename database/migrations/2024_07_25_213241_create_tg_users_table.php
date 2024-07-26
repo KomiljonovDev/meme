@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tg_users', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });
     }
