@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ReferralCode extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'tg_user_id',
+        'code'
+    ];
 }
