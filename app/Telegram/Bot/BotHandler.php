@@ -8,7 +8,7 @@ use App\Models\TgUser;
 class BotHandler extends Bot {
     public function start(int $chatId):void {
         TgUser::firstOrCreate([
-            'chat_id' => $chatId,
+            'user_id' => $chatId,
         ]);
         $this->sendChatAction('typing', $chatId)
             ->sendMessage('Assalomu alaykum');
