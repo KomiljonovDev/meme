@@ -12,13 +12,12 @@ class BotHandler extends Bot {
         $user = TgUser::firstOrCreate([
             'user_id' => $chatId,
         ]);
-        $code = ReferralCode::updateOrCreate([
+        ReferralCode::where('tg_user_id', $user->id)->firstOrCreate([
             'tg_user_id' => $user->id,
-            'code' => Str::random('10'),
+            'code' => Str::random(10),
         ]);
         $this->sendChatAction('typing', $chatId)
             ->sendMessage('Assalomu alaykum');
-        dd($code);
     }
     public function startReferal (int $chatId, string $text):void {
         $referrer_id = explode("/start", $text)[1];
