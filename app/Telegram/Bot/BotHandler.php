@@ -7,14 +7,16 @@ use App\Models\TgUser;
 
 class BotHandler extends Bot {
     public function start(int $chatId):void {
-        TgUser::firstOrCreate([
+        $user = TgUser::firstOrCreate([
             'user_id' => $chatId,
         ]);
         $this->sendChatAction('typing', $chatId)
             ->sendMessage('Assalomu alaykum');
+        dd($user);
     }
     public function startReferal (int $chatId, string $text):void {
+        $referrer_id = explode("/start", $text)[1];
         $this->sendChatAction('typing', $chatId)
-            ->sendMessage('Assalomu alaykum, referal: ' . explode('/start', $text)[1]);
+            ->sendMessage('Assalomu alaykum, referal: ' . explode('/start'));
     }
 }
