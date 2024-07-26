@@ -13,7 +13,7 @@ class BotHandler extends Bot {
             'user_id' => $chatId,
         ]);
         $code = ReferralCode::updateOrCreate([
-            'user_id' => $user->id,
+            'tg_user_id' => $user->id,
             'code' => Str::random('10'),
         ]);
         $this->sendChatAction('typing', $chatId)
