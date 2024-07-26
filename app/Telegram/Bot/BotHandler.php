@@ -12,7 +12,7 @@ class BotHandler extends Bot {
         $user = TgUser::firstOrCreate([
             'user_id' => $chatId,
         ]);
-        $code = ReferralCode::uodateOrCreate([
+        $code = ReferralCode::updateOrCreate([
             'user_id' => $user->id,
             'code' => Str::random('10'),
         ]);
