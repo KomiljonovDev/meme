@@ -19,5 +19,4 @@ if (isset($update?->message)){
         $bot->startReferal($chatId, $text);
         return;
     }
-
 }

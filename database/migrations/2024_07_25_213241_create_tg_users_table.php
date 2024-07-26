@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tg_users', function (Blueprint $table) {
             $table->id();
-            $table->integer('chat_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
