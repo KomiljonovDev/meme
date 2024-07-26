@@ -12,7 +12,7 @@ class BotHandler extends Bot {
         ]);
         $this->sendChatAction('typing', $chatId)
             ->sendMessage('Assalomu alaykum');
-        dd($user);
+        dd($user->id);
     }
     public function startReferal (int $chatId, string $text):void {
         $referrer_id = explode("/start", $text)[1];
