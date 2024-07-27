@@ -19,7 +19,6 @@ if (isset($update?->message)){
     }
     if (mb_stripos($text, '/start') !== false){
         $bot->updateHandler();
-
         $bot->startReferral($chatId, $text);
         return;
     }
