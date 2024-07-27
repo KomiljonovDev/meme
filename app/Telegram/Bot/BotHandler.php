@@ -17,9 +17,9 @@ class BotHandler extends Bot {
             ->sendMessage('Assalomu alaykum, ' . $user_data['referral']->code . "\ncoin: " . $user_data['coin']->coin);
     }
     public function startReferral (int $chatId, string $text):void {
-        $referrer_id = explode("/start", $text)[1];
+        $referrer_id = explode("/start ", $text)[1];
 
         $this->sendChatAction('typing', $chatId)
-            ->sendMessage('Assalomu alaykum, referal: ' . json_encode($referrer_id));
+            ->sendMessage('Assalomu alaykum, referal: ' . trim($referrer_id));
     }
 }
