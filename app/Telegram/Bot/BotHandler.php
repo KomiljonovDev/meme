@@ -16,13 +16,16 @@ class BotHandler extends Bot {
         $this->sendChatAction('typing', $chatId)
             ->sendMessage('Assalomu alaykum, ' . $user_data['referral']->code . "\ncoin: " . $user_data['coin']->coin);
     }
-    public function startReferral (int $chatId, string $text):void {
-        $referrer_id = explode("/start", $text)[1];
-
-        $user_data = TgUser::saveUser($chatId, $referrer_id);
-
+    public function startReferral (int $chatId, string $update):void {
         $this->sendChatAction('typing', $chatId)
-            ->sendMessage('Assalomu alaykum, by referral ' . $user_data['referral']->code . "\ncoin: " . $user_data['coin']->coin);
+            ->sendMessage(json_encode($update));
+
+//        $referrer_id = explode("/start", $text)[1];
+//
+//        $user_data = TgUser::saveUser($chatId, $referrer_id);
+//
+//        $this->sendChatAction('typing', $chatId)
+//            ->sendMessage('Assalomu alaykum, by referral ' . $user_data['referral']->code . "\ncoin: " . $user_data['coin']->coin);
 
     }
 }
