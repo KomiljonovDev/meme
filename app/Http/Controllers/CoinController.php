@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Coin;
+use App\Models\TgUser;
 use Illuminate\Http\Request;
 
 class CoinController extends Controller
@@ -10,7 +12,8 @@ class CoinController extends Controller
         $attributes = $request->validate([
             'tg_user_id'=>'required|integer',
         ]);
-        dd($attributes);
+        $user = TgUser::where('user_id',$attributes['tg_user_id'])->first();
+        Coin::plus($user->id);
     }
     /**
      * Display a listing of the resource.
