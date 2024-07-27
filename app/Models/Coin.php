@@ -15,6 +15,6 @@ class Coin extends Model
 
     public static function plus (int $tgUserId) {
         $referrals = Referral::where('referrer_id', $tgUserId)->count();
-        dd($tgUserId);
+        dd($referrals);
     }
 }
