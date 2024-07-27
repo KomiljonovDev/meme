@@ -9,7 +9,6 @@ $update = $bot->updates();
 if (isset($update?->message)){
     echo "ok";
 
-    $bot->updateHandler();
 
     $message = $update->message;
     $text = $message->text;
@@ -19,7 +18,8 @@ if (isset($update?->message)){
         return;
     }
     if (mb_stripos($text, '/start') !== false){
-        echo 'ok';
+        $bot->updateHandler();
+
         $bot->startReferral($chatId, $text);
         return;
     }
