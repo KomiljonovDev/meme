@@ -13,8 +13,15 @@ class Coin extends Model
         'coin'
     ];
 
-    public static function plus (int $tgUserId) {
+    public static function toFill (int $tgUserId) {
         $referrals = Referral::where('referrer_id', $tgUserId)->count();
-        dd($referrals);
+        $plus = 1;
+        if ($referrals >= 3) {
+            $plus = 3;
+        }
+        $coin = Coin::where('tg_user_id', $tgUserId)->first();
+        $coin->increment('coin', $plus);
+        $coin->save();
+        return $coin;
     }
 }

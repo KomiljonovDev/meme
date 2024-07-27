@@ -13,7 +13,8 @@ class CoinController extends Controller
             'tg_user_id'=>'required|integer',
         ]);
         $user = TgUser::where('user_id',$attributes['tg_user_id'])->first();
-        Coin::plus($user->id);
+        $response = Coin::toFill($user->id);
+        return response($response)->json();
     }
     /**
      * Display a listing of the resource.
