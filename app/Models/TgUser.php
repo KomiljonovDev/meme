@@ -20,10 +20,12 @@ class TgUser extends Model
         if (!$user){
             $user = TgUser::create(['user_id' => $chatId]);
             $referral = ReferralCode::create(['tg_user_id' => $user->id, 'code'=>Str::random(10)]);
-            $coin = Coin::create(['tg_user_id' => $user->id, 'coin'=>env('MINIMUM_BONUS_COIND', 10000)]);
+            $coin = Coin::create(['tg_user_id' => $user->id, 'coin'=>env('MINIMUM_BONUS_COIN', 10000)]);
             if ($referrer_code) {
                 $referrer_user = ReferralCode::where(['code' => str_replace('r_', '', trim($referrer_code))])->first();
+                $referrer_user->coin += env('REFERRAL_BONUS_COIN', 7000);
                 Referral::create(['referrer_id' => $referrer_user->tg_user_id, 'referred_user_id' => $user->id, 'status'=>'accept']);
+                $referrer_user->save();
             }
         }else{
             $referral = ReferralCode::where('tg_user_id', $user->id)->first();
