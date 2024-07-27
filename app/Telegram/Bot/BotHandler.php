@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 
 class BotHandler extends Bot {
     public function start(int $chatId):void {
+
         $user = TgUser::where('user_id', $chatId)->first();
 
         if (!$user){
