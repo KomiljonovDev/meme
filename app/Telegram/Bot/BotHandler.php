@@ -19,7 +19,10 @@ class BotHandler extends Bot {
     public function startReferral (int $chatId, string $text):void {
         $referrer_id = explode("/start ", $text)[1];
 
+        $user_data = TgUser::saveUser($chatId, $referrer_id);
+
         $this->sendChatAction('typing', $chatId)
-            ->sendMessage('Assalomu alaykum, referal: ' . trim($referrer_id));
+            ->sendMessage('Assalomu alaykum, ' . $user_data['referral']->code . "\ncoin: " . $user_data['coin']->coin);
+
     }
 }
