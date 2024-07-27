@@ -1,7 +1,7 @@
 <?php
 use App\Telegram\Bot\BotHandler;
 
-$bot = new BotHandler(['botToken'=>'7170488644:AAG3pMlvLYfvGoGpoL9P3taX5FEDI37MOm0']);
+$bot = new BotHandler(['botToken'=>env('TELEGRAM_BOT_TOKEN')]);
 
 
 $update = $bot->updates();
