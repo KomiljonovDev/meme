@@ -19,7 +19,7 @@ class BotHandler extends Bot {
             $coin = Coin::create(['tg_user_id' => $user->id, 'coin'=>env('MINIMUM_BONUS_COIND', 10000)]);
         }else{
             $referral = ReferralCode::where('tg_user_id', $user->id)->first();
-            $coin = ReferralCode::where('tg_user_id', $user->id)->first();
+            $coin = Coin::where('tg_user_id', $user->id)->first();
         }
 
         $this->sendChatAction('typing', $chatId)

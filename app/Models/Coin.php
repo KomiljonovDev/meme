@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Coin extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'tg_user_id',
+        'coin'
+    ];
 }
