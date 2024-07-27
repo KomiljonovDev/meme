@@ -14,7 +14,7 @@ class CoinController extends Controller
         ]);
         $user = TgUser::where('user_id',$attributes['tg_user_id'])->first();
         $response = Coin::toFill($user->id);
-        return response($response)->json();
+        return response($response);
     }
     /**
      * Display a listing of the resource.
