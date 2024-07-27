@@ -29,7 +29,6 @@ class TgUser extends Model
             $referral = ReferralCode::where('tg_user_id', $user->id)->first();
             $coin = Coin::where('tg_user_id', $user->id)->first();
         }
-
         return [
             'user' => $user,
             'referral' => $referral,
