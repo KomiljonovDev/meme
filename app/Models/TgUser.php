@@ -23,9 +23,10 @@ class TgUser extends Model
             $coin = Coin::create(['tg_user_id' => $user->id, 'coin'=>env('MINIMUM_BONUS_COIN', 10000)]);
             if ($referrer_code) {
                 $referrer_user = ReferralCode::where(['code' => str_replace('r_', '', trim($referrer_code))])->first();
-                $referrer_user->coin += env('REFERRAL_BONUS_COIN', 7000);
+                $referrer_user_coin = Coin::where(['tg_user_id' => $referrer_user->id])->first();
+                $referrer_user_coin->coin += env('REFERRAL_BONUS_COIN', 7000);
                 Referral::create(['referrer_id' => $referrer_user->tg_user_id, 'referred_user_id' => $user->id, 'status'=>'accept']);
-                $referrer_user->save();
+                $referrer_user_coin->save();
             }
         }else{
             $referral = ReferralCode::where('tg_user_id', $user->id)->first();
