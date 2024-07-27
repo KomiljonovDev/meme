@@ -8,8 +8,6 @@ $update = $bot->updates();
 
 if (isset($update?->message)){
     echo "ok";
-
-
     $message = $update->message;
     $text = $message->text;
     $chatId = $message->chat->id;
