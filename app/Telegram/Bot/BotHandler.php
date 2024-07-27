@@ -2,6 +2,7 @@
 
 namespace App\Telegram\Bot;
 
+use App\Models\Coin;
 use App\Telegram\Bot\Bot;
 use App\Models\TgUser;
 use App\Models\ReferralCode;
@@ -13,15 +14,16 @@ class BotHandler extends Bot {
 
         if (!$user){
             $user = TgUser::create(['user_id' => $chatId]);
-            ReferralCode::create(['tg_user_id' => $user->id, 'code'=>Str::random(10)]);
+            $referral = ReferralCode::create(['tg_user_id' => $user->id, 'code'=>Str::random(10)]);
+            $coin = Coin::create(['tg_user_id' => $user->id, 'coin'=>env('MINIMUM_BONUS_COIND', 10000)]);
         }
 
         $this->sendChatAction('typing', $chatId)
-            ->sendMessage('Assalomu alaykum, ' . $user->code);
+            ->sendMessage('Assalomu alaykum, ' . $referral->code . "\ncoin: " . $coin->coin);
     }
     public function startReferal (int $chatId, string $text):void {
         $referrer_id = explode("/start", $text)[1];
         $this->sendChatAction('typing', $chatId)
-            ->sendMessage('Assalomu alaykum, referal: ' . explode('/start'));
+            ->sendMessage('Assalomu alaykum, referal: ');
     }
 }
