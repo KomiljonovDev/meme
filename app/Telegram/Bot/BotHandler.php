@@ -21,4 +21,10 @@ class BotHandler extends Bot {
         $user_data = TgUser::saveUser($chatId, $referrer_id);
         $this->sendMessage("Assalomu alaykum, by referral \n\nhttps://t.me/" . env('BOT_USER_NAME', 'bot_meme_bot_test_bot') . "?start=r_" . $user_data['referral']->code . "\ncoin: " . $user_data['coin']->coin, $chatId);
     }
+
+    public function clickHandler (int $chatId):void {
+        $user = TgUser::where('user_id',$chatId)->first();
+        $response = Coin::toFill($user->id);
+        $this->sendMessage("Coin added: " . $response->coin, $chatId);
+    }
 }

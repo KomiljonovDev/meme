@@ -15,6 +15,10 @@ if (isset($update?->message)){
         $bot->start($chatId);
         return;
     }
+    if ($text == '/click'){
+        $bot->clickHandler($chatId);
+        return;
+    }
     if (mb_stripos($text, '/start') !== false){
         $bot->startReferral($chatId, $text);
         return;
