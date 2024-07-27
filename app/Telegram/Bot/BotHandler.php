@@ -13,16 +13,13 @@ class BotHandler extends Bot {
         $this->sendMessage(json_encode($this->updates()), $this->updates()->message->from->id);
     }
     public function start(int $chatId):void {
-
         $user_data = TgUser::saveUser($chatId);
-
-        $this->sendMessage('Assalomu alaykum, ' . $user_data['referral']->code . "\ncoin: " . $user_data['coin']->coin, $chatId);
+        $this->sendMessage('Assalomu alaykum, https://t.me/' . env('BOT_USER_NAME', 'bot_meme_bot_test_bot') . "?start=r_" . $user_data['referral']->code . "\ncoin: " . $user_data['coin']->coin, $chatId);
     }
     public function startReferral (int $chatId, string $text):void {
         $referrer_id = explode("/start", $text)[1];
         $user_data = TgUser::saveUser($chatId, $referrer_id);
-
-        $this->sendMessage('Assalomu alaykum, by referral ' . $user_data['referral']->code . "\ncoin: " . $user_data['coin']->coin, $chatId);
+        $this->sendMessage("Assalomu alaykum, by referral \n\nhttps://t.me/" . env('BOT_USER_NAME', 'bot_meme_bot_test_bot') . "?start=r_" . $user_data['referral']->code . "\ncoin: " . $user_data['coin']->coin, $chatId);
 
     }
 }
