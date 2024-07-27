@@ -16,6 +16,9 @@ class BotHandler extends Bot {
             $user = TgUser::create(['user_id' => $chatId]);
             $referral = ReferralCode::create(['tg_user_id' => $user->id, 'code'=>Str::random(10)]);
             $coin = Coin::create(['tg_user_id' => $user->id, 'coin'=>env('MINIMUM_BONUS_COIND', 10000)]);
+        }else{
+            $referral = ReferralCode::where('tg_user_id', $user->id)->first();
+            $coin = ReferralCode::where('tg_user_id', $user->id)->first();
         }
 
         $this->sendChatAction('typing', $chatId)
