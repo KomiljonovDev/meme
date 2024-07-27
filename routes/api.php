@@ -7,4 +7,4 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/click', [CoinController::class, 'click']);
+Route::patch('/click', [CoinController::class, 'click']);
