@@ -22,7 +22,7 @@ class BotHandler extends Bot {
         $user_data = TgUser::saveUser($chatId, $referrer_id);
 
         $this->sendChatAction('typing', $chatId)
-            ->sendMessage('Assalomu alaykum, ' . $user_data['referral']->code . "\ncoin: " . $user_data['coin']->coin);
+            ->sendMessage('Assalomu alaykum, by referral ' . $user_data['referral']->code . "\ncoin: " . $user_data['coin']->coin);
 
     }
 }
