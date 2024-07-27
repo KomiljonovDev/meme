@@ -22,7 +22,7 @@ class TgUser extends Model
             $referral = ReferralCode::create(['tg_user_id' => $user->id, 'code'=>Str::random(10)]);
             $coin = Coin::create(['tg_user_id' => $user->id, 'coin'=>env('MINIMUM_BONUS_COIND', 10000)]);
             if ($referrer_code) {
-                $referrer_user = ReferralCode::where(['code' => trim($referrer_code, 'r_')])->first();
+                $referrer_user = ReferralCode::where(['code' => str_replace('r_', '', trim($referrer_code))])->first();
                 Referral::create(['referrer_id' => $referrer_user->tg_user_id, 'referred_user_id' => $user->id]);
             }
         }else{
